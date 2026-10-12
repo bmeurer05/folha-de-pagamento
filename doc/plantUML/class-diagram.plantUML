@@ -1,0 +1,72 @@
+@startuml
+!theme plain
+
+class Administrador {
+  - nome: String
+  - usuario: String
+  - email: String
+  - id: int
+  - senhaHash: String
+
+  + cadastrarColaborador(Colaborador c): void
+  + consultarColaborador(int id): Colaborador
+  + alterarColaborador(int id): void
+  + excluirColaborador(int id): void
+  + gerarFolha(): FolhaDePagamento
+  + emitirResumo(): Relatorio
+
+}
+
+class FolhaDePagamento {
+  - mesReferencia: int
+  - anoReferencia: int
+  - dataGeracao: LocalDate
+  - valorTotal: Double
+  - colaboradores: List<Colaborador>
+
+  + adicionarColaborador(int id): void
+  + removerColaborador(int id): void
+  + calcularFolha(): Double
+  + gerarResumo(): String
+  + consultarValorTotal(): Double
+}
+
+abstract class Colaborador {
+  - matricula: String
+  - nome: String
+  - id: int
+  - salarioBase: Double
+
+  {abstract} + calcularRemuneracao(): Double
+}
+
+class ColaboradorComissionado {
+  - valorVendas: Double
+  - percentualComissao: Double
+
+  + calcularRemuneracao(): Double
+}
+
+class ColaboradorPadrao {
+  + calcularRemuneracao(): Double
+}
+
+class ColaboradorPorProducao {
+  - quantidadeProduzida: Double
+  - valorPagoPorUnidadeProduzida: Double
+
+  + calcularRemuneracao(): Double
+}
+
+Colaborador <|-- ColaboradorComissionado
+Colaborador <|-- ColaboradorPadrao
+Colaborador <|-- ColaboradorPorProducao
+
+Colaborador "1..*" -Right- "0..*" FolhaDePagamento
+Administrador .Right.> FolhaDePagamento 
+
+Administrador -- Colaborador
+
+skinparam nodesep 100
+skinparam linetype ortho
+@enduml

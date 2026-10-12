@@ -1,0 +1,36 @@
+@startuml
+!theme plain
+
+left to right direction
+
+actor "Administrador" as adm
+
+rectangle "Sistema de Folha de Pagamento" {
+  usecase "Autenticar Administrador" as UC001
+  usecase "Cadastrar Colaborador" as UC002
+  usecase "Consultar Colaboradores" as UC003
+  usecase "Alterar Colaborador" as UC004
+  usecase "Excluir Colaborador" as UC005
+  usecase "Pesquisar Colaborador" as UC006
+  usecase "Filtrar Colaboradores" as UC007
+  usecase "Calcular Salário" as UC008
+  usecase "Gerar Folha de Pagamento" as UC009
+  usecase "Emitir Resumo da Folha" as UC010
+
+  UC003 <.. UC006 : <<extend>>
+  UC003 <.. UC007 : <<extend>>
+
+  UC009 ..> UC008 : <<include>>
+}
+
+adm -- UC001
+adm -- UC002
+adm -- UC003
+adm -- UC004
+adm -- UC005
+adm -- UC009
+adm -- UC010
+
+
+skinparam nodesep 20
+@enduml
