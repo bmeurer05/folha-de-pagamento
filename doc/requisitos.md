@@ -99,6 +99,16 @@ Além do desenvolvimento do sistema, o seguinte projeto abrangerá atividades re
 | **UC009** | Gerar Folha de Pagamento | RF013, RF014 |
 | **UC010** | Emitir resumo da Folha | RF015 |
 
-### 5.1 Usecase UML
+## 6 Usecase UML
 
-![Usecase UML](img/usecaseUML.png)
+![Usecase UML](plantUML/usecase-diagram.png)
+
+## 6.1 Diagrama de Classes UML
+
+![Class Diagram UML](plantUML/class-diagram.png)
+
+## 6.2 Diagramas de Sequencia UML
+
+### 6.2.1 Cadastrar Colaborador
+
+![Sequence Diagram 1 UML](plantUML/sequence-diagram-cadastrar-colaborador.png)

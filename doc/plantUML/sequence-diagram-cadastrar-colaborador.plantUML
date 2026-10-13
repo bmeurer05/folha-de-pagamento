@@ -1,0 +1,31 @@
+@startuml
+!theme plain
+
+actor Administrador
+participant Sistema
+database "Banco de Dados" as BD
+
+Administrador -> Sistema: cadastrarColaborador(dados)
+activate Sistema
+
+Sistema -> Sistema: validarDados()
+
+alt Dados válidos
+    Sistema -> BD: inserirColaborador(dados)
+    activate BD
+
+    alt Cadastro realizado
+        BD --> Sistema: Sucesso
+        Sistema --> Administrador: Colaborador cadastrado
+    else Erro no banco
+        BD --> Sistema: Erro
+        Sistema --> Administrador: Falha ao cadastrar
+    end
+
+    deactivate BD
+else Dados inválidos
+    Sistema --> Administrador: Dados inválidos
+end
+
+deactivate Sistema
+@enduml
