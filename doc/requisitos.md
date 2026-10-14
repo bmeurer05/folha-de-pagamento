@@ -1,13 +1,53 @@
 # Especificações de Requisitos de Software
 > **Projeto:** Folha de Pagamento | **Data:** 05/10/2026
 
-## 1. Introdução
+## 1. Introdução 
 Este projeto tem como objetivo o desenvolvimento de um sistema de folha de pagamento que permita o cadastro, gerenciamento e cálculo de salários de colaboradores de diferentes categorias. Podendo gerar relatórios individuais e consolidados da folha de pagamento. A partir do desenvolvimento do sistema serão aplicadas práticas de gestão e qualidade buscando garantir o funcionamento correto e a qualidade do sistema. 
 
 ### 1.1 Escopo do projeto
 O projeto contempla o desenvolvimento do sistema de folha de pagamento destinado ao gerenciamento de colaboradores e ao cálculo de suas respecitvas remunerações, onde o sistema permitirá cadastrar, consultar, alterar e excluir colaboradores. Também podendo realizar de forma automática o cálculo salarial de acordo com a categoria de cada colaborador. 
 Serão contempladas três categorias de remuneração no sistema: colaborador padrão, colaborador comissionado e colaborador por produção. Também ira permitir a geração da folha de pagamento individual e consolidada, apresentado os dados dos colaboradores, suas remunerações e o custo total da folha.
 Além do desenvolvimento do sistema, o seguinte projeto abrangerá atividades relacionadas à garantia da qualidade de software, incluindo documentação, modelagem, testes, rastreabilidade de requisitos e validação da solução desenvolvida.
+
+### 1.2 Partes Interessadas
+| Stakeholder | Interesse |
+|:------------|:----------|
+| **Departamento Pessoal (DP)** | Usuário direto do sistema, responsável pelo cadastro, gerenciamento dos colaboradores e geração da folha de pagamento. |
+| **Gerente do Departamento Pessoal** | Usuário indireto interessado na eficiência operacional do setor e na confiabilidade dos cálculos salariais. |
+| **Colaboradores** | Indivíduos que terão suas informações inseridas e processadas no sistema. |
+| **Setor Recursos Humanos (RH)**| Potencial beneficiário do sistema. Interesse na organização e precisão dos cálculos. |
+
+
+### 1.3 Premissas
+
+- **P001:** A empresa disponibilizará as regras de remuneração necessárias para a implementação dos cálculos salariais.
+- **P002:** Os usuários do sistema possuirão conhecimentos básicos de informática.
+- **P003:** Os usuários do sistema terão acesso à internet.
+- **P004:** Os usuários terão acesso a computadores com Windows 10 ou superior, ou distribuições Linux que disponham de navegadores web atualizados.
+
+### 1.4 Restrições
+
+- **R001:** O projeto deverá ser concluído até o dia 1º de dezembro de 2026 (01/12/2026).
+- **R002:** O sistema não deverá depender de APIs externas para seu funcionamento.
+- **R003:** O sistema deverá contemplar exclusivamente as três categorias de remuneração definidas: padrão, comissionado e por produção.
+
+
+### 1.5 Benefícios Esperados
+
+É esperado que a implementação do sistema proporcione os seguintes benefícios aos usuários:
+
+- **Automatização dos cálculos salariais:** Redução da necessidade de cálculos manuais
+
+- **Redução de erros:** Diminuição de erros humanos no cálculo de remuneração dos colaboradores.
+
+- **Centralização das informações:** Organização dos dados cadastrais e salariais dos colaboradores em um único sistema.
+
+- **Eficiência operacional:** Redução do tempo necessário para o gerenciamento dos colaboradores e a geração das folhas de pagamento.
+
+- **Facilidade de consulta:** Acesso simplificado às informações dos colaboradores e às folhas de pagamento individuais e coletivas.
+
+- **Padronização dos processos:** Aplicação consistente das regras de remuneração definidas pela empresa.
+
 
 ## 2. Requisitos Funcionais (RF)
 
@@ -96,7 +136,7 @@ Além do desenvolvimento do sistema, o seguinte projeto abrangerá atividades re
 | **UC006** | Pesquisar Colaborador | RF008 |
 | **UC007** | Filtrar Colaboradores | RF009 |
 | **UC008** | Calcular Salário | RF011, RN008, RN010-RN012 |
-| **UC009** | Gerar Folha de Pagamento | RF013, RF014 |
+| **UC009** | Gerar Folha de Pagamento Geral e Individual| RF013, RF014 |
 | **UC010** | Emitir resumo da Folha | RF015 |
 
 ## 6 Usecase UML
@@ -106,9 +146,14 @@ Além do desenvolvimento do sistema, o seguinte projeto abrangerá atividades re
 ## 6.1 Diagrama de Classes UML
 
 ![Class Diagram UML](plantUML/class-diagram.png)
+> O diagrama de classes abstrai classes de implementação e outras partes da implementação.
 
 ## 6.2 Diagramas de Sequencia UML
 
 ### 6.2.1 Cadastrar Colaborador
 
 ![Sequence Diagram 1 UML](plantUML/sequence-diagram-cadastrar-colaborador.png)
+
+### 6.2.1 Gerar Folha de Pagamento
+
+![Sequence Diagram 2 UML](plantUML/sequence-diagram-gerar-folha.png)

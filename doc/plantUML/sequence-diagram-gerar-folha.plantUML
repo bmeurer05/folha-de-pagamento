@@ -1,0 +1,30 @@
+@startuml
+!theme plain
+
+actor Administrador
+participant Sistema
+participant "FolhaDePagamento" as Folha
+participant "Colaborador" as Colaborador
+
+Administrador -> Sistema: gerarFolha()
+activate Sistema
+
+Sistema -> Folha: calcularFolha()
+activate Folha
+
+loop Para cada colaborador
+    Folha -> Colaborador: calcularRemuneracao()
+    activate Colaborador
+
+    Colaborador --> Folha: valorRemuneracao
+    deactivate Colaborador
+
+    Folha -> Folha: adicionarAoTotal(valorRemuneracao)
+end
+
+Folha --> Sistema: folhaCalculada
+deactivate Folha
+
+Sistema --> Administrador: folhaGerada
+deactivate Sistema
+@enduml
