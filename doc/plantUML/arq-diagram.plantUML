@@ -1,0 +1,17 @@
+@startuml
+!theme plain
+
+skinparam linetype ortho
+skinparam componentStyle rectangle
+top to bottom direction
+
+rectangle "Camada de Apresentação\n(React)" as Apresentacao
+rectangle "Camada de Controle\n(API REST)" as Controle
+rectangle "Camada de Negócio\n(Spring Boot)" as Negocio
+rectangle "Camada de Persistência\n(JPA + Banco de Dados)" as Persistencia
+
+Apresentacao --> Controle
+Controle --> Negocio
+Negocio --> Persistencia
+
+@enduml
