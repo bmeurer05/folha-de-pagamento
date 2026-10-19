@@ -286,3 +286,81 @@ backend/
 ```
 > **Aviso**: A estrutura do diretório poderá mudar conforme o desenvolvimento do projeto.
 
+---
+
+## 8 Plano de Garantia de Qualidade (PGQ)
+
+O plano de garantia de qualidade (PGQ), estabelece práticas para prevenir, identificar e corrigir defeitos durante o desenvolvimento. Sendo seu objetivo garantir que o sistema atenda os requisitos documentados, preservar os dados dos colaboradores e executar corretamente os cálculos das três categorias de remuneração.
+
+### 8.1 Padrões de codificação
+
+O código deverá respeitar a arquitetura em camadas apresentada no projeto. No backend, os controladores receberão as requisições, os serviços executarão regras de negócio e os repositórios realizarão o acesso aos dados. No frontend, componentes, páginas de serviços de comunicação com a API deverão possuir responsabilidades definidas.
+
+Será adotado os seguintes padrões:
+
+- Utilização de nomes descritivos e consistentes para classes, métodos, variáveis e componentes.
+
+- Em Java:
+    - **Classes** em *PascalCase* e nomes contendo substantivos. Exemplo: `Administrador` e `ColaboradorPadrao`.
+    - **Métodos e Atributos** em *camelCase* e nomes contendo verbos. Exemplo: `cadastrarColaborador()` e `removerColaborador()`.
+    - **Constantes** em *UPER_SNAKE_CASE*. Exemplo: `SALARIO_MINIMO`.
+- Em React: 
+    - **Componentes** em *PascalCase* e **Variáveis** em *camelCase*.
+
+- Identação com quatro espaços no Java e dois espaços no frontend.
+
+- Métodos e componentes com responsabilidades delimitadas, evitando duplicação das regras de negócio.
+
+- Evitar comentários. Código deve se explicar por si só.
+
+- Validação das entradas no backend e mensagens claras na interface. A validação do frontend complementará a do servidor.
+
+### 8.2 Controle de versões
+
+O código, os testes e a documentação serão mantidas em um repositório no Github. A branch *main* representará a versão estável. Cada funcionalidade ou correção será desenvolvida em uma branch própria, por exemplo: `feature/cadastro-colaborador`.
+
+Os commits deverão descrever a alteração realizada e, quando possível, indicar o requisito que está relacionado. As alterações serão integradas à branch principal por meio de solicitação de integração após a revisão e execução dos testes.
+
+### 8.3 Processo de revisão técnica
+
+Antes da integração, as alterações serão verificadas quanto a:
+1. Atendimento aos requisitos e às regras de negócio relacionadas.
+2. Correção dos cálculos e das validações.
+3. Separação de responsabilidades e legibilidade do código.
+4. Tratamento de erros, autenticação e integridade dos dados.
+5. Adequação dos testes e atualização da documentação afetada.
+
+O processo de revisão se dará pela utilização do checklist antes da integração. Os apontamentos deverão ser corrigidos ou justificados e registrados antes da aprovação.
+
+### 8.4 Critérios de qualidade
+
+| Critério | Forma de verificação |
+|:---------|:---------------------|
+| Correção funcional | Execução dos casos de teste vinculados aos RF001-RF016. |
+| Confiabilidade dos cálculos | Comparação dos resultados com valores esperados calculados previamente conforme RN008-RN012. |
+| Validação e integridade | Testes de entradas inválidas, matrícula duplicada e operações de persistência. |
+| Controle de acesso | Verificação de login e de bloqueio das operações administrativas sem autenticação. |
+| Usabilidade | Execução das tarefas principais, verificando clareza dos campos, mensagens e confirmações. |
+| Manutenabilidade e extensibilidade | Revisão da modularização e do isolamento das regras de remuneração. |
+| Compatibilidade | Execução nos ambientes definidos no plano de testes. |
+| Desempenho | Medição das operações de cadastro, consulta e cálculo no cenário de referência |
+
+### 8.5 Métricas adotadas
+
+As seguintes metas são propostas para tornar a avaliação objetiva:
+
+| Métrica | Cálculo ou registro | Meta proposta |
+|:--------|:--------------------|:--------------|
+| Cobertura dos requisitos funcionais por testes | RF com ao menos um caso associado / 16 * 100 | 100% |
+| Execução dos testes planejados | Casos executados / casos planejados * 100 | 100% |
+| Taxa de aprovação dos testes | Casos aprovados / casos executados * 100 | 100% |
+| Tempo de resposta | Tempo entro envio da operação e recebimento da resposta completa | Até 2 segundos |
+
+O cenário de desempenho deverá registrar hardware, sistema operacional, navegador e versões.
+
+### 
+
+
+
+
+
