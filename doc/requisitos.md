@@ -140,7 +140,7 @@ Além do desenvolvimento do sistema, o seguinte projeto abrangerá atividades re
 | **UC001** | Autenticar Administrador | RF016, RNF010 |
 | **UC002** | Cadastrar Colaborador | RF001, RF004, RF005, RF006, RN001–RN007, RN009 |
 | **UC003** | Consultar Colaboradores | RF007, RF012, RF010 |
-| **UC004** | Alterar Colaborador | RF001-RN007 |
+| **UC004** | Alterar Colaborador | RF002, RN001–RN007, RNF002, RNF007 |
 | **UC005** | Excluir Colaborador | RF002, RF003 |
 | **UC006** | Pesquisar Colaborador | RF008 |
 | **UC007** | Filtrar Colaboradores | RF009 |
@@ -354,7 +354,7 @@ As seguintes metas são propostas para tornar a avaliação objetiva:
 | Cobertura dos requisitos funcionais por testes | RF com ao menos um caso associado / 16 * 100 | 100% |
 | Execução dos testes planejados | Casos executados / casos planejados * 100 | 100% |
 | Taxa de aprovação dos testes | Casos aprovados / casos executados * 100 | 100% |
-| Tempo de resposta | Tempo entro envio da operação e recebimento da resposta completa | Até 2 segundos |
+| Tempo de resposta | Tempo entro envio da operação e recebimento da resposta completa | Até 2 segundos em pelo menos 29 de 30 medições de cada operação |
 
 O cenário de desempenho deverá registrar hardware, sistema operacional, navegador e versões.
 
@@ -424,13 +424,13 @@ Um caso será aprovado quando todos os resultados esperados forem observados. Se
 
 A aprovação global dependerá dos critérios do PGQ.
 
-## 8.7 Especificação de Casos de Teste
+## 8.8 Especificação de Casos de Teste
 
 Os casos abaixo estão planejados e ainda não possuem resultado de execução. Salvo indicação contrária, a aplicação e o banco deverão estar disponíveis e o administrador autenticado. Cada caso utilizará uma base restaurada ou registros exclusivos para evitar interferência entre execuções.
 
 **Dados de referência:** colaborador padrão P001, salário base de R$ 2.000,00; comissionado C001, base de R$ 2.000,00, vendas de R$ 10.000,00 e comissão de 10%; por produção Q001, base de R$ 1.500,00, quantidade 100 e valor unitário de R$ 5,00. As remunerações esperadas são, respectivamente, R$ 2.000,00, R$ 3.000,00 e R$ 2.000,00; total de R$ 7.000,00.
 
-### 8.7.1 Autenticação e cadastro
+### 8.8.1 Autenticação e cadastro
 
 | ID | Objetivo e rastreabilidade | Pré-condição e dados | Procedimento | Resultado esperado |
 |:---|:---------------------------|:---------------------|:-------------|:-------------------|
@@ -451,7 +451,7 @@ Os casos abaixo estão planejados e ainda não possuem resultado de execução. 
 | CT015 | Quantidade negativa — RN006 | Categoria por produção e demais dados válidos. | Informar quantidade -1 e salvar. | Operação rejeitada e quantidade sinalizada. |
 | CT016 | Valor unitário negativo — RN007 | Categoria por produção e demais dados válidos. | Informar valor unitário de -0,01 e salvar. | Operação rejeitada e valor sinalizado. |
 
-### 8.7.2 Manutenção e consultas
+### 8.8.2 Manutenção e consultas
 
 | ID | Objetivo e rastreabilidade | Pré-condição e dados | Procedimento | Resultado esperado |
 |:---|:---------------------------|:---------------------|:-------------|:-------------------|
@@ -466,7 +466,7 @@ Os casos abaixo estão planejados e ainda não possuem resultado de execução. 
 | CT025 | Ordenação — RF010 | Dados de referência cadastrados. | Ordenar por nome, matrícula e salário final no sentido disponibilizado pela interface. | Nome e matrícula seguem a ordem correspondente; salário segue ordem numérica, mantendo empates sem exigir desempate não especificado. |
 | CT026 | Detalhamento da remuneração — RF012 | C001 e Q001 com dados de referência. | Abrir o detalhamento de cada colaborador. | C001 mostra base 2.000, vendas 10.000, comissão 10%, adicional 1.000 e total 3.000; Q001 mostra base 1.500, quantidade 100, valor 5, adicional 500 e total 2.000. |
 
-### 8.7.3 Folha, persistência e desempenho
+### 8.8.3 Folha, persistência e desempenho
 
 | ID | Objetivo e rastreabilidade | Pré-condição e dados | Procedimento | Resultado esperado |
 |:---|:---------------------------|:---------------------|:-------------|:-------------------|
@@ -474,16 +474,14 @@ Os casos abaixo estão planejados e ainda não possuem resultado de execução. 
 | CT028 | Folha consolidada e resumo — RF013–RF015 | Somente os três registros de referência na base. | Emitir a folha consolidada e consultar o resumo. | Os três registros são apresentados uma vez cada; folha e resumo totalizam R$ 7.000,00. |
 | CT029 | Persistência após reinicialização — RNF003, RNF007 | P001 cadastrado com base alterada para 2.500. | Reiniciar o backend sem limpar o banco; autenticar e consultar P001. | Dados permanecem disponíveis e remuneração é de R$ 2.500,00. |
 | CT030 | Produção sem adicional — RN006, RN007, RN012 | Base 1.500; matrículas novas. | Cadastrar quantidade zero e valor 5; em outro registro, quantidade 100 e valor zero. | Ambos aceitos e com remuneração de R$ 1.500,00. |
-| CT031 | Compatibilidade dos fluxos — RNF009 | Ambientes Windows e Linux e navegadores definidos no plano. | Em cada combinação, realizar login, cadastro, consulta e emissão da folha. | Fluxos concluídos, sem falhas que impeçam o uso; versões e evidências registradas por combinação. |
-| CT032 | Tempo de resposta — RNF005 | Cenário de desempenho do PGQ preparado e ambiente registrado. | Após aquecimento, medir 30 execuções de cadastro, 30 de consulta e 30 de cálculo. | Em cada operação, pelo menos 29 das 30 medições ficam em até 2 segundos; nenhuma resposta incorreta. Meta sujeita à confirmação da equipe. |
+| CT031 | Compatibilidade dos fluxos — RNF009 | Ambientes Windows, Linux e navegadores definidos no plano. | Em cada combinação, realizar login, cadastro, consulta e emissão da folha. | Fluxos concluídos, sem falhas que impeçam o uso; versões e evidências registradas por combinação. |
+| CT032 | Tempo de resposta — RNF005 | Cenário de desempenho do PGQ preparado e ambiente registrado. | Medir 30 execuções de cadastro, 30 de consulta e 30 de cálculo. | Em cada operação, pelo menos 29 das 30 medições ficam em até 2 segundos. Nenhuma resposta incorreta. Meta sujeita à confirmação da equipe. |
 
 Para cada execução, registrar: **ID do caso, versão/commit, ambiente, data, responsável, resultado obtido, situação (aprovado/reprovado/bloqueado), evidência e ocorrência associada**. Nos casos com múltiplas tentativas, registrar cada resultado; o caso só será aprovado se todas passarem. A cobertura de usabilidade, manutenibilidade e extensibilidade será complementada pelos checklists de revisão do PGQ.
 
-## 8.8 Planejamento do Projeto
+## 8.9 Planejamento do Projeto
 
-### 8.8.1 Estrutura Analítica do Projeto (EAP)
-
-A EAP organiza o trabalho em entregas e pacotes verificáveis.
+### 8.9.1 Estrutura Analítica do Projeto (EAP)
 
 | Código | Entrega ou pacote de trabalho | Produto esperado |
 |:-------|:------------------------------|:-----------------|
@@ -513,9 +511,9 @@ A EAP organiza o trabalho em entregas e pacotes verificáveis.
 | 6.1 | Revisão documental | Instruções de execução, relatórios e documentação consolidada. |
 | 6.2 | Homologação e apresentação | Aceite registrado e demonstração preparada. |
 
-### 8.8.2 Cronograma proposto
+### 8.9.2 Cronograma proposto
 
-O cronograma abaixo considera a continuação do trabalho a partir de 19/10/2026 e a conclusão até 01/12/2026. Não pressupõe que as atividades anteriores já tenham sido concluídas; o documento recebido será utilizado como base para revisão. As datas devem ser ajustadas à disponibilidade dos integrantes, preservando o prazo final.
+O cronograma abaixo considera a continuação do trabalho a partir de 19/10/2026 e a conclusão até 01/12/2026. Não pressupõe que as atividades anteriores já tenham sido concluídas. O documento recebido será utilizado como base para revisão. As datas devem ser ajustadas à disponibilidade da equipe sempre preservando o prazo final.
 
 | Atividade | Período proposto | Dependência principal | Marco ou entrega |
 |:----------|:-----------------|:----------------------|:-----------------|
@@ -536,17 +534,6 @@ O cronograma abaixo considera a continuação do trabalho a partir de 19/10/2026
 As atividades sobrepostas pressupõem trabalho em paralelo ou alternância entre tarefas. Caso a equipe tenha apenas um integrante ou disponibilidade reduzida, deverá reavaliar o esforço e as sobreposições. O cronograma representa uma proposta de datas, não uma estimativa de horas já validada.
 
 O acompanhamento será semanal, comparando entregas previstas e concluídas. Atrasos ou mudanças de escopo deverão ser registrados, avaliando o impacto sobre as dependências e o prazo final.
-
-### 8.8.3 Pontos a confirmar antes da versão definitiva
-
-- Nomes, quantidade e disponibilidade dos integrantes.
-- Versões das ferramentas e viabilidade das metas propostas.
-- Política de arredondamento dos valores monetários.
-- Comportamento da pesquisa parcial e insensível a maiúsculas, critérios de desempate e sentidos de ordenação, caso sejam desejados.
-- Formato de emissão das folhas, pois a especificação não exige exportação em PDF ou outro arquivo.
-- Responsável pelo aceite e numeração final das seções.
-
-Essas decisões deverão ser refletidas nos requisitos e nos casos afetados antes da validação final.
 
 
 
