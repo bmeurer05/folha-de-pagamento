@@ -531,8 +531,6 @@ O cronograma abaixo considera a continuação do trabalho a partir de 19/10/2026
 | Reserva para ajustes finais | 28/11 a 30/11 | Pendências finais | Pacote final conferido. |
 | Entregar e apresentar | 01/12 | Critérios de aprovação atendidos | Entrega final. |
 
-As atividades sobrepostas pressupõem trabalho em paralelo ou alternância entre tarefas. Caso a equipe tenha apenas um integrante ou disponibilidade reduzida, deverá reavaliar o esforço e as sobreposições. O cronograma representa uma proposta de datas, não uma estimativa de horas já validada.
-
 O acompanhamento será semanal, comparando entregas previstas e concluídas. Atrasos ou mudanças de escopo deverão ser registrados, avaliando o impacto sobre as dependências e o prazo final.
 
 
